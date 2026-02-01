@@ -1,202 +1,79 @@
 ---
-title: "Observability with Prometheus and Micrometer"
-description: "How to instrument backend services with Micrometer and Prometheus to understand system behavior, detect failures early, and operate reliably in production."
-date: "2025-11-25"
+title: "Monitoramento de identidade e acesso: o essencial"
+description: "Indicadores práticos para IAM/PAM que realmente reduzem risco operacional."
+date: "2025-11-30"
 ---
 
-Observability is often confused with monitoring.
+Observabilidade em segurança não é ter mais dados.
 
-Monitoring tells you **that** something is wrong.  
-Observability helps you understand **why** it is wrong.
-
-In production systems, especially distributed ones, this difference matters.
+É ter dados que sustentem decisão, investigação e auditoria. Sem isso, o SOC opera no escuro e o GRC vira coleta manual.
 
 ---
 
-## Why Logs Alone Are Not Enough
+## Três Camadas de Visibilidade
 
-Logs are useful, but they have limitations:
+Uma operação madura conecta:
+- **Métricas**: volume de alertas, tempo de resposta, cobertura
+- **Logs**: trilhas detalhadas de eventos
+- **Evidências**: artefatos auditáveis com integridade
 
-- They are unstructured by default
-- They are hard to aggregate
-- They do not provide a global view
-- They are reactive, not predictive
-
-When systems scale horizontally, logs alone stop being sufficient.
-
-Metrics become the primary signal.
+Essas camadas precisam conversar, não competir.
 
 ---
 
-## Prometheus as a Metrics Backbone
+## Métricas que Importam
 
-Prometheus is built around a simple idea:
+Evite métricas de vaidade.
 
-> **Collect numeric time-series data and make it queryable.**
+Foque em:
+- MTTA/MTTR por categoria de incidente
+- Taxa de falso positivo por fonte
+- Cobertura de ativos críticos
+- Tempo de execução de playbooks
 
-It excels at:
-- Measuring system behavior over time
-- Detecting trends and anomalies
-- Alerting before users notice failures
-
-Prometheus does not replace logs or traces — it complements them.
-
----
-
-## Micrometer: Instrumentation for JVM Applications
-
-Micrometer is a metrics facade for JVM-based applications.
-
-It allows you to:
-- Instrument code once
-- Export metrics to multiple backends
-- Standardize naming and labels
-
-In Spring Boot applications, Micrometer is the de facto standard.
+Métricas conectam segurança a risco.
 
 ---
 
-## Basic Micrometer Setup
+## Logs com Contexto
 
-Add dependencies:
+Logs sem contexto são inúteis.
 
-```xml
-<dependency>
-  <groupId>io.micrometer</groupId>
-  <artifactId>micrometer-registry-prometheus</artifactId>
-</dependency>
-```
+Padronize:
+- Identificadores de ativo e usuário
+- Severidade e categoria
+- Correlação entre eventos
 
-Expose the metrics endpoint:
-
-```properties
-management.endpoints.web.exposure.include=health,info,prometheus
-```
-
-Prometheus scrapes:
-
-```
-/actuator/prometheus
-```
+Isso reduz o tempo de investigação e melhora a resposta.
 
 ---
 
-## Core Metrics You Should Always Have
+## Evidências com Integridade
 
-### Request Metrics
+GRC exige evidência confiável.
 
-- Request count
-- Latency (percentiles)
-- Error rate
+Garanta:
+- Retenção definida por política
+- Imutabilidade para logs críticos
+- Acesso controlado e auditável
 
-Example:
-
-```java
-Timer.builder("http.server.requests")
-  .tag("method", "POST")
-  .tag("endpoint", "/orders")
-  .register(meterRegistry);
-```
+Sem integridade, a evidência perde valor.
 
 ---
 
-### JVM Metrics
+## Integração com GRC
 
-Micrometer provides these out of the box:
+Observabilidade deve servir governança:
+- Dashboards executivos de risco
+- Relatórios de conformidade contínua
+- Indicadores de eficácia de controle
 
-- Heap usage
-- GC pauses
-- Thread count
-- CPU usage
-
-These metrics explain performance issues better than logs.
+Quando bem feita, a observabilidade reduz o custo de compliance.
 
 ---
 
-## Custom Business Metrics
+## Conclusão
 
-Infrastructure metrics are not enough.
+Observabilidade de segurança é disciplina, não ferramenta.
 
-You should measure **business-relevant signals**.
-
-Examples:
-- Orders created per minute
-- Payments processed
-- Events published
-- Outbox backlog size
-
-```java
-Gauge.builder("outbox.pending.events", outboxRepository::countPending)
-  .register(meterRegistry);
-```
-
-This connects system health to business impact.
-
----
-
-## Labels and Cardinality
-
-Labels are powerful but dangerous.
-
-Good labels:
-- HTTP method
-- Status code
-- Service name
-
-Bad labels:
-- User ID
-- Order ID
-- Random values
-
-High cardinality leads to:
-- Memory pressure
-- Slow queries
-- Unstable Prometheus servers
-
-Design labels carefully.
-
----
-
-## Alerting: From Metrics to Action
-
-Alerts should be:
-- Actionable
-- Rare
-- Meaningful
-
-Bad alert:
-> CPU usage above 80%
-
-Better alert:
-> Error rate above 2% for 5 minutes
-
-Alerts should reflect **user impact**, not raw resource usage.
-
----
-
-## Observability as a Design Concern
-
-Observability is not an afterthought.
-
-Well-designed systems:
-- Expose internal state
-- Make failure visible
-- Enable safe operations
-
-If you cannot observe a system, you cannot operate it confidently.
-
----
-
-## Final Thoughts
-
-Prometheus and Micrometer do not make systems reliable.
-
-They make systems **understandable**.
-
-Reliability emerges when:
-- Behavior is visible
-- Trends are known
-- Failures are detected early
-
-Observability turns production from a black box into an engineering discipline.
-
+Com métricas, logs e evidências integrados, o programa ganha clareza operacional e confiabilidade para auditorias.

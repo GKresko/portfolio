@@ -23,7 +23,8 @@ export function Header() {
 
   const navItems = [
     { href: "/", label: "Home" },
-    { href: "/resume", label: "Resume" },
+    { href: "/resume", label: "Resumo" },
+    { href: "/projects", label: "Projetos" },
     { href: "/blog", label: "Blog" },
   ]
 
@@ -35,9 +36,9 @@ export function Header() {
           href="/"
           className="text-sm font-mono text-foreground select-none"
         >
-          <span>gustavo@</span>
-          <span className="font-medium">pop-os</span>
-          <span className="opacity-60">:~</span>
+          <span>gustavokresko0510@</span>
+          <span className="font-medium">gmail</span>
+          <span className="opacity-60">.com</span>
         </Link>
 
         {/* Desktop nav */}
@@ -66,22 +67,7 @@ export function Header() {
             className="text-muted-foreground hover:text-primary"
           >
             <a
-              href="https://github.com/lobofoltran"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <IconGithubSimple className="h-4 w-4" />
-            </a>
-          </Button>
-
-          <Button
-            asChild
-            variant="ghost"
-            size="icon"
-            className="text-muted-foreground hover:text-primary"
-          >
-            <a
-              href="https://linkedin.com/in/gustavo-lobo"
+              href="https://linkedin.com/in/gustavokresko"
               target="_blank"
               rel="noreferrer"
             >
@@ -127,21 +113,7 @@ export function Header() {
                 className="justify-start"
               >
                 <a
-                  href="https://github.com/lobofoltran"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  GitHub
-                </a>
-              </Button>
-
-              <Button
-                asChild
-                variant="ghost"
-                className="justify-start"
-              >
-                <a
-                  href="https://linkedin.com/in/gustavo-lobo"
+                  href="https://linkedin.com/in/gustavokresko"
                   target="_blank"
                   rel="noreferrer"
                 >

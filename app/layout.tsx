@@ -12,23 +12,23 @@ import { AppLoading } from "@/components/app-loading"
 
 export const metadata: Metadata = {
   title: {
-    default: "Gustavo Lobo",
-    template: "%s | Gustavo Lobo"
+    default: "Gustavo Kresko",
+    template: "%s | Gustavo Kresko"
   },
   description:
-    "Software Engineer focused on architecture, distributed systems, and performance.",
+    "Analista de Cibersegurança focado em arquitetura, monitoramento e desempenho de ambientes de segurança.",
   openGraph: {
-    title: "Gustavo Lobo",
+    title: "Gustavo Kresko",
     description:
-      "Software Engineer focused on architecture, distributed systems, and performance.",
+      "Analista de Cibersegurança focado em arquitetura, monitoramento e desempenho de ambientes de segurança.",
     url: "https://seusite.com",
-    siteName: "Gustavo Lobo",
+    siteName: "Gustavo Kresko",
     images: [
       {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "Gustavo Lobo"
+        alt: "Gustavo Kresko"
       }
     ],
     locale: "en_US",

@@ -1,137 +1,102 @@
 ---
-title: "DDD in Practice: Modeling a Real Domain with Code"
-description: "A practical example of applying Domain-Driven Design to model a real domain, enforce invariants, and prevent invalid states through code."
-date: "2025-11-20"
+title: "Opinião: por que GRC falha sem métricas acionáveis"
+description: "Uma visão crítica sobre indicadores, evidências e o que realmente reduz risco."
+date: "2025-11-28"
 ---
 
-# DDD in Practice: Modeling a Real Domain with Code
+Em GRC, a maior distância não é técnica. É semântica.
 
-Domain-Driven Design only proves its value when the model actively **prevents invalid states** instead of relying on external validations or conventions.
+Negócio fala em objetivos, segurança fala em controles, e auditoria pede evidências. Quando esses mundos não se conectam, o programa se torna burocrático e pouco efetivo.
 
-This article shows a practical example of how DDD changes the way domain rules are expressed directly in code.
-
----
-
-## The domain rules
-
-Consider a simplified **Order** domain with the following rules:
-
-- An order starts in the `CREATED` state  
-- Items can only be added before confirmation  
-- An order cannot be confirmed without items  
-
-These rules look trivial, but they are often implemented incorrectly.
+Este artigo apresenta um **método de modelagem de riscos** que transforma processos de negócio em controles claros, mensuráveis e auditáveis.
 
 ---
 
-## The anemic model (anti-pattern)
+## Comece pelo Processo, Não pela Norma
 
-A common implementation looks like this:
+Normas são referência, não ponto de partida.
 
-```java
-public class Order {
-    public UUID id;
-    public String status;
-    public BigDecimal total;
-}
-```
+Mapeie o processo crítico:
+- Quem executa
+- Quais dados trafegam
+- Quais sistemas suportam
+- Quais decisões são tomadas
 
-```java
-public class OrderService {
-    public void confirm(Order order) {
-        if (order.total.compareTo(BigDecimal.ZERO) <= 0) {
-            throw new IllegalStateException("Order must have items");
-        }
-        order.status = "CONFIRMED";
-    }
-}
-```
-
-### Problems with this approach
-
-- The domain state is public and mutable
-- Business rules live outside the entity
-- Any part of the system can put the object into an invalid state
-
-The model does not protect itself.
+Sem esse mapa, o controle vira checklist desconectado.
 
 ---
 
-## Modeling the domain with DDD
+## Identifique Ativos e Valores
 
-With DDD, the goal is to move rules into the domain model.
+Cada processo depende de ativos que precisam de proteção:
+- Dados sensíveis e regulados
+- Identidades privilegiadas
+- Infraestrutura de apoio
+- Integrações críticas
 
-
-```java
-public class Order {
-
-    private final UUID id;
-    private OrderStatus status = OrderStatus.CREATED;
-    private BigDecimal total = BigDecimal.ZERO;
-
-    public Order(UUID id) {
-        this.id = id;
-    }
-
-    public void addItem(BigDecimal price) {
-        if (status != OrderStatus.CREATED) {
-            throw new IllegalStateException(
-                "Items can only be added before confirmation"
-            );
-        }
-
-        total = total.add(price);
-    }
-
-    public void confirm() {
-        if (total.compareTo(BigDecimal.ZERO) <= 0) {
-            throw new IllegalStateException(
-                "Order must contain at least one item"
-            );
-        }
-
-        status = OrderStatus.CONFIRMED;
-    }
-}
-```
+O valor do ativo define a prioridade do controle.
 
 ---
 
-### What changed?
+## Modele Cenários de Risco
 
-With this model:
+Transforme o processo em cenários plausíveis:
+- Acesso não autorizado a dados críticos
+- Alterações indevidas em cadastros
+- Interrupção de um fluxo essencial
 
-- Invariants are enforced inside the entity
-- Invalid states are impossible by design
-- Services no longer contain business rules
-- The domain becomes expressive and self-defensive
-
-Application services are reduced to orchestration.
+Cenários bem definidos tornam a conversa objetiva.
 
 ---
 
-## Why this matters in real systems
+## Converta Riscos em Controles
 
-In real systems:
+Para cada cenário, defina controles com propósito:
+- Preventivos: bloqueiam antes do impacto
+- Detectivos: identificam rapidamente
+- Corretivos: restauram a operação
 
-- Multiple developers touch the same codebase
-- Rules evolve over time
-- New use cases appear constantly
+Controle sem objetivo de risco é gasto sem retorno.
 
-A model that does not protect invariants will eventually fail under change.
+---
 
-DDD shifts complexity from services to the model, where it belongs.
+## Desenhe Evidências desde o Início
 
-----
+Controles eficazes precisam de evidências repetíveis:
+- Logs com retenção e integridade
+- Registros de aprovação e segregação
+- Relatórios periódicos e assinados
 
-## Conclusion
+Auditoria não pode depender de coleta manual.
 
-Domain-Driven Design is not about abstractions or theoretical purity.
+---
 
-It is about designing models that:
+## Indicadores que Importam
 
-- Express business rules clearly
-- Protect invariants by default
-- Make invalid states impossible
+Um programa sênior mede resultados:
+- Cobertura dos riscos críticos
+- Taxa de exceções e desvios
+- Tempo de correção de não conformidades
+- Evolução do risco residual
 
-When the domain model is strong, the rest of the system becomes simpler.
+Indicadores sustentam decisão, não vaidade.
+
+---
+
+## Armadilhas Comuns
+
+Evite:
+- Controles duplicados sem propósito
+- Dependência de evidências manuais
+- Adoção acrítica de frameworks
+- Falta de dono do risco
+
+Risco sem responsável é risco invisível.
+
+---
+
+## Conclusão
+
+Modelagem de riscos é o elo entre negócio, segurança e compliance.
+
+Quando o processo é bem mapeado, os controles deixam de ser burocracia e passam a proteger o que realmente importa.

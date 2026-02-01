@@ -5,7 +5,7 @@ import { getAllPosts } from "@/lib/posts"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 export const metadata: Metadata = {
-  title: "Blog — Gustavo Lobo | Backend & Distributed Systems",
+  title: "Blog — Gustavo Kresko | Cibersegurança e GRC",
   description:
     "Technical articles on backend engineering, distributed systems, Domain-Driven Design, event-driven architectures, and operating reliable systems in production."
 }
@@ -20,8 +20,7 @@ export default function BlogPage() {
           Blog
         </h1>
         <p className="text-muted-foreground">
-          Writing about software engineering, architecture, and lessons learned
-          from real systems.
+          Análises, pensamentos e aprendizados sobre segurança da informação, cibersegurança e governança, conectando prática técnica, notícias do setor e reflexões sobre riscos, incidentes e maturidade organizacional.
         </p>
       </header>
 

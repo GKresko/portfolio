@@ -1,332 +1,114 @@
 ---
-title: "Designing Resilient Kafka Integrations"
-description: "How to design Kafka-based integrations that tolerate downtime, avoid data loss, and remain reliable under real-world failure scenarios."
-date: "2025-11-21"
+title: "Guia rápido: resposta a incidentes com playbooks enxutos"
+description: "O que padronizar, o que automatizar e como reduzir MTTR sem burocracia."
+date: "2025-11-24"
 ---
 
-Kafka is often introduced as a *highly available* and *fault-tolerant* system.  
-What is less discussed is a simple truth:
+Integrações frágeis são um multiplicador de risco.
 
-> **Kafka will eventually be unavailable.**
+Quando SIEM, SOAR, EDR e ticketing não se conversam bem, alertas se perdem, evidências ficam incompletas e o tempo de resposta aumenta.
 
-Brokers restart.  
-Networks partition.  
-Zookeeper or KRaft has issues.  
-Cloud infrastructure fails.
-
-If your system assumes Kafka is *always* available, it is not resilient — it is fragile.
-
-This article focuses on **how to design Kafka integrations that survive real failures**, without losing data or cascading outages across systems.
+Este artigo mostra como **projetar integrações resilientes** no ecossistema de segurança.
 
 ---
 
-## The Core Problem: Kafka as a Dependency
+## Defina Fluxos Críticos
 
-From an application’s perspective, Kafka is an **external dependency**.
+Nem toda integração é essencial.
 
-That means:
-- It can be slow
-- It can be temporarily unavailable
-- It can partially fail
-- It can accept writes but not reads (or the opposite)
+Priorize fluxos que suportam o ciclo de resposta:
+- Criação automática de incidentes
+- Enriquecimento de alertas
+- Ações de contenção
+- Registro de evidências
 
-Treating Kafka as “always on” creates tight coupling between:
-- Business logic
-- Infrastructure availability
-
-Resilient systems **decouple business correctness from infrastructure health**.
+O resto pode ser incremental.
 
 ---
 
-## Common Anti-Patterns
+## Contratos Claros de Dados
 
-Before discussing solutions, let’s be explicit about what *not* to do.
+Integração forte começa com contrato.
 
-### 1. Synchronous Business Flow Depends on Kafka
+Defina campos obrigatórios:
+- Identificador único de evento
+- Severidade e categoria
+- Ativo e usuário afetados
+- Referências a evidências
 
-```java
-orderService.createOrder(order);
-kafkaProducer.send(orderCreatedEvent); // critical path
-```
-
-If Kafka is down:
-
-- Order creation fails
-- Users see errors
-- Business stops
-
-Kafka should **never** be part of the synchronous business success path.
+Sem contrato, cada sistema interpreta o mesmo alerta de forma diferente.
 
 ---
 
-### 2. Retrying Blindly Until It Works
+## Idempotência e Reprocessamento
 
-```java
-while (true) {
-  try {
-    producer.send(event);
-    break;
-  } catch (Exception e) {
-    Thread.sleep(1000);
-  }
-}
-```
+Falhas acontecem. Reprocessamento precisa ser seguro.
 
+Boas práticas:
+- IDs determinísticos
+- Deduplicação explícita
+- Logs de tentativas
+- Retentativas com backoff
 
-Problems:
-
-- Threads get stuck
-- Backpressure propagates
-- System collapses under load
-
-Retries without boundaries are **denial-of-service bugs**.
+Idempotência evita incidentes duplicados e ruído operacional.
 
 ---
 
-### 3. Assuming “Kafka Will Handle It”
+## Tratamento de Falhas Externas
 
-Kafka guarantees durability *after* data is written to the log.
+APIs de fornecedores são limitadas e instáveis.
 
-It does **not** guarantee:
+Proteja o fluxo com:
+- Filas intermediárias
+- Timeouts e circuit breakers
+- Dead-letter para eventos problemáticos
+- Alarmes de backlog
 
-- Your producer sent the event
-- Your transaction committed
-- Your app didn’t crash between DB commit and send
-
-That gap is where most data loss happens.
-
----
-
-## Design Principle: Kafka Is Eventually Available
-
-A resilient integration follows one rule:
-
-> **The system must keep working even if Kafka is temporarily unavailable.**
-
-That implies:
-
-- Business data is persisted first
-- Events are delivered asynchronously
-- Failures are isolated and recoverable
+Integração sem controle de falha vira ponto único de risco.
 
 ---
 
-## The Outbox Pattern (Foundation of Resilience)
+## Segurança da Integração
 
-The **Outbox Pattern** is the most reliable way to integrate Kafka with transactional systems.
+A integração é superfície de ataque.
 
-### Basic Idea
+Inclua:
+- Autenticação forte e rotativa
+- Segregação de privilégios
+- Criptografia em trânsito
+- Auditoria de chamadas
 
-1. Write business data and event to the **same database transaction**
-2. Persist events in an `outbox` table
-3. A background process publishes events to Kafka
-4. On success, mark events as sent
-
----
-
-### Example Schema
-
-```sql
-CREATE TABLE outbox (
-  id UUID PRIMARY KEY,
-  aggregate_type TEXT,
-  aggregate_id TEXT,
-  event_type TEXT,
-  payload JSONB,
-  created_at TIMESTAMP,
-  published_at TIMESTAMP NULL
-);
-```
+Se a integração for comprometida, o atacante ganha escala.
 
 ---
 
-### Transactional Write
+## Evidências e Rastreamento
 
-```java
-@Transactional
-public void createOrder(CreateOrderCommand cmd) {
-  Order order = orderRepository.save(cmd.toOrder());
+Para GRC, cada integração precisa ser rastreável.
 
-  OutboxEvent event = OutboxEvent.from(order);
-  outboxRepository.save(event);
-}
-```
+Garanta:
+- Trilhas de auditoria
+- Registro de ações automáticas
+- Referências cruzadas entre sistemas
 
-If the transaction commits:
-
-- Order exists
-- Event exists
-
-If it rolls back:
-
-- Neither exists
-
-**No gaps. No lost events.**
-
-## Asynchronous Publishing with Retry and Backoff
-
-A background worker is responsible for delivery.
-
-
-```java
-List<OutboxEvent> events =
-  outboxRepository.findUnpublished(limit);
-
-for (OutboxEvent event : events) {
-  try {
-    kafkaProducer.send(event.toKafkaRecord());
-    outboxRepository.markAsPublished(event.id());
-  } catch (Exception e) {
-    // leave it for retry
-  }
-}
-```
-
-Key properties:
-
-- Idempotent
-- Retryable
-- No blocking business logic
-- Kafka downtime is tolerated
+Sem rastreabilidade, a resposta não é defensável.
 
 ---
 
-## Idempotency: Required, Not Optional
+## Métricas Operacionais
 
-Retries mean **duplicates will happen**.
+Integração resiliente é mensurável:
+- Taxa de falha por conector
+- Latência de criação de incidentes
+- Percentual de eventos deduplicados
+- Tamanho de backlog
 
-Your consumers must be idempotent.
-
-### Example: Consumer Deduplication
-
-```java
-if (processedEventRepository.exists(eventId)) {
-  return;
-}
-
-process(event);
-processedEventRepository.save(eventId);
-```
-
-Without idempotency:
-
-- Retries cause corruption
-- Side effects multiply
-- Data integrity breaks
+Métricas mostram onde a automação precisa evoluir.
 
 ---
 
-## Handling Partial Kafka Failures
+## Conclusão
 
-Kafka can fail in subtle ways:
+Integrações são parte do controle, não um detalhe técnico.
 
-- Leader unavailable
-- ISR shrinking
-- Produce timeout
-- Network partitions
-
-### Producer Configuration Matters
-
-Minimum baseline:
-
-```properties
-acks=all
-enable.idempotence=true
-retries=Integer.MAX_VALUE
-max.in.flight.requests.per.connection=5
-```
-
-This reduces:
-
-- Duplicate events
-- Lost writes
-- Inconsistent ordering
-
-But configuration alone **does not replace architectural safety**.
-
----
-
-## Circuit Breakers for Kafka Producers
-
-If Kafka is clearly unhealthy, **stop trying temporarily**.
-
-```java
-if (kafkaCircuitBreaker.isOpen()) {
-  return;
-}
-```
-
-Benefits:
-
-- Protects thread pools
-- Avoids log storms
-- Keeps the system responsive
-
-Kafka recovery is handled later by the outbox worker.
-
----
-
-## Observability: Know When Kafka Is Hurting You
-
-Resilience without observability is blind optimism.
-
-You should monitor:
-
-- Outbox size
-- Publish latency
-- Retry count
-- Kafka error rate
-
-### Example Metrics
-
-```text
-outbox_events_pending
-outbox_publish_failures_total
-kafka_producer_latency
-```
-
-A growing outbox is not a failure — it is a **signal**.
-
----
-
-## Failure Scenarios (Realistic)
-
-### Kafka Down for 10 Minutes
-
-- Business continues
-- Outbox grows
-- Events are delivered later
-- No data loss
-
-### App Crash After DB Commit
-
-- Event is still in outbox
-- Delivered on restart
-
-### Kafka Recovers Slowly
-
-- Backoff prevents overload
-- Circuit breaker avoids pressure
-
-This is **operational resilience**, not theoretical reliability.
-
----
-
-## Final Thoughts
-
-Kafka is a powerful backbone — but it is still infrastructure.
-
-**Resilient systems assume failure and design around it.**
-
-If your architecture:
-
-- Persists business state first
-- Decouples delivery
-- Embraces retries and idempotency
-- Observes failure instead of fearing it
-
-Then Kafka downtime becomes:
-
-> an inconvenience, not an outage.
-
-That is the difference between *using Kafka* and *engineering with Kafka*.
+Quando desenhadas com resiliência, elas protegem o ciclo de resposta e sustentam evidências para auditoria.

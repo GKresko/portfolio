@@ -9,9 +9,9 @@ import { Cloud, Code2, Database, Layers, LucideProps, Server } from "lucide-reac
 import { ForwardRefExoticComponent, RefAttributes } from "react"
 
 export const metadata: Metadata = {
-  title: "Resume — Gustavo Lobo | Senior Backend & Distributed Systems Engineer",
+  title: "Resumo — Gustavo Kresko | Analista de Cibersegurança",
   description:
-    "Senior backend engineer with experience in Java, distributed systems, and event-driven architectures. Focused on reliability, scalability, and operating mission-critical systems in production."
+    "Analista de Cibersegurança com atuação em SOC e SIEM, focado em monitoramento, detecção e resposta a incidentes. Experiência em análise de logs, investigação de eventos de segurança, hardening de ambientes e governança de segurança da informação, com base em frameworks como ISO/IEC 27001 e práticas de GRC."
 }
 
 export default function ResumePage() {
@@ -24,7 +24,7 @@ export default function ResumePage() {
             <div className="relative h-12 w-12 overflow-hidden rounded-md">
               <Image
                 src="/me.jpeg"
-                alt="Gustavo Lobo"
+                alt="Gustavo Kresko"
                 fill
                 priority
                 className="object-cover"
@@ -33,10 +33,10 @@ export default function ResumePage() {
 
             <div className="space-y-1">
               <h1 className="text-3xl font-semibold tracking-tight">
-                Gustavo Lobo
+                Gustavo Kresko
               </h1>
               <p className="text-muted-foreground">
-                Software Engineer — Backend & Distributed Systems
+                Analista de Cibersegurança
               </p>
             </div>
           </header>
@@ -47,11 +47,7 @@ export default function ResumePage() {
           <section className="space-y-3">
             <h2 className="text-lg font-semibold">Summary</h2>
             <p className="text-muted-foreground">
-              Software Engineer with hands-on experience designing, operating,
-              and evolving mission-critical and highly transactional systems in
-              production. Strong focus on backend engineering, distributed
-              systems, and event-driven architectures, with technical ownership
-              spanning architectural design, rollout, and post–go-live support.
+              Analista de Cibersegurança, com foco em detecção de ameaças, automação de segurança e arquitetura corporativa. Experiência em governança, risco e conformidade (GRC), certificações ISO 27001 (Lead Implementer) e condução de certificação TISAX, incluindo auditorias regulatórias. Forte atuação em engenharia de cibersegurança, SOC, monitoramento e resposta a incidentes, construção de pipelines de SIEM, automação com n8n e integração de segurança em aplicações (SAST/DAST), além da administração de controles de segurança em ambientes corporativos e financeiros.
             </p>
           </section>
 
@@ -61,83 +57,102 @@ export default function ResumePage() {
           <section className="space-y-6">
             <h2 className="text-lg font-semibold">Experience</h2>
 
-            {/* Fiscaltech R&D */}
+            {/* Cybersecurity */}
             <Card>
               <CardContent className="space-y-4 px-6">
                 <div>
                   <p className="font-medium">
-                    Software Engineer — Research & Development
+                    Analista de Cibersegurança — Operações de Segurança e Governança
                   </p>
                   <p className="text-muted-foreground">
-                    Fiscal Technology and Automation · Jan 2025 — Present
+                    Banco Finaxis · Ago 2025 — Present
                   </p>
                 </div>
 
-                <ul className="list-disc space-y-1 pl-5 text-muted-foreground">
-                  <li>
-                    Contributed to the development and operation of a nationwide electronic toll collection system (Free Flow), a highly transactional, mission-critical platform operating 24/7 and responsible for more than doubling the company’s revenue.
-                  </li>
-                  <li>
-                    Worked on systems processing large volumes of financial and operational data in real time under strict requirements for availability, consistency, and traceability.
-                  </li>
-                  <li>
-                    Held technical ownership of backend services from architectural design through rollout and post–go-live support, participating in architectural decisions and continuous evolution in production.
-                  </li>
-                  <li>
-                    Designed, developed, and operated backend services using Java (Spring Boot) with event-driven integration via Kafka.
-                  </li>
-                  <li>
-                    Operated PostgreSQL in high availability (Patroni), including logical replication and table partitioning for high data throughput.
-                  </li>
-                  <li>
-                    Deployed and operated services in on-premise Kubernetes environments with CI/CD pipelines, infrastructure automation, and centralized observability.
-                  </li>
-                </ul>
+              <ul className="list-disc space-y-1 pl-5 text-muted-foreground">
+                    <li>
+                      Atuação na criação e operação de um SOC interno, incluindo engenharia de SIEM, pipelines de monitoramento e correlação de eventos de segurança.
+                    </li>
+                    <li>
+                      Desenvolvimento de automações de cibersegurança com n8n para resposta a incidentes, integração de ferramentas e otimização de processos operacionais.
+                    </li>
+                    <li>
+                      Administração de controles de segurança corporativos, incluindo IAM, PAM, DLP, antivírus, firewall Fortigate e gestão de vulnerabilidades (Nessus).
+                    </li>
+                    <li>
+                      Implementação de práticas de segurança em aplicações (SAST/DAST) e integração de segurança ao ciclo de desenvolvimento (DevSecOps).
+                    </li>
+                    <li>
+                      Condução de treinamentos e campanhas de conscientização em segurança da informação para colaboradores.
+                    </li>
+                    <li>
+                      Atendimento a auditorias regulatórias (Banco Central), evidenciando controles técnicos e organizacionais.
+                    </li>
+                    <li>
+                      Participação no desenho e evolução da arquitetura de segurança corporativa em ambientes financeiros críticos.
+                    </li>
+                  </ul>
 
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="blue">Java</Badge>
-                  <Badge variant="blue">Spring Boot</Badge>
-                  <Badge variant="blue">Kafka</Badge>
-                  <Badge variant="blue">PostgreSQL</Badge>
-                  <Badge variant="blue">Kubernetes</Badge>
-                  <Badge variant="blue">DDD</Badge>
-                  <Badge variant="blue">Event-Driven</Badge>
-                </div>
+                    <div className="flex flex-wrap gap-2">
+                      <Badge variant="blue">SIEM - Wazuh</Badge>
+                      <Badge variant="blue">SOC</Badge>
+                      <Badge variant="blue">Fortigate</Badge>
+                      <Badge variant="blue">IAM - Horacius</Badge>
+                      <Badge variant="blue">PAM - SenhaSegura</Badge>
+                      <Badge variant="blue">DLP</Badge>
+                      <Badge variant="blue">Nessus</Badge>
+                      <Badge variant="blue">n8n</Badge>
+                      <Badge variant="blue">SAST</Badge>
+                      <Badge variant="blue">DAST</Badge>
+                    </div>
+
               </CardContent>
             </Card>
 
-            {/* ERP */}
+            {/* GRC */}
             <Card>
               <CardContent className="space-y-4 px-6">
                 <div>
                   <p className="font-medium">
-                    Software Engineer — ERP Protheus
+                    Analista de Segurança da Informação (GRC) — ISO 27001 & TISAX
                   </p>
                   <p className="text-muted-foreground">
-                    Fiscal Technology and Automation · May 2024 — Jan 2025
+                    WHB Automotive S.A · Nov 2022 — Ago 2025
                   </p>
                 </div>
 
                 <ul className="list-disc space-y-1 pl-5 text-muted-foreground">
                   <li>
-                    Developed and maintained integrations and custom solutions based on the TOTVS Protheus ERP, supporting multiple business areas.
+                    Implementação e governança de controles de segurança baseados na ISO/IEC 27001, incluindo políticas, procedimentos, gestão de riscos e framework de controles organizacionais e técnicos.
                   </li>
                   <li>
-                    Designed and implemented REST APIs and backend routines following official Protheus architecture and best practices.
+                    Liderança do processo de certificação TISAX, incluindo preparação organizacional, levantamento de evidências, coordenação de auditorias e aprovação final da empresa.
                   </li>
                   <li>
-                    Built a corporate web platform to centralize dashboards, reports, and strategic tools as a modern integration layer over legacy systems.
+                    Estruturação do programa de Governança, Risco e Conformidade (GRC), com mapeamento de controles, auditorias internas, gestão de não conformidades e acompanhamento de planos de ação.
                   </li>
                   <li>
-                    Implemented process automation initiatives that reduced manual workflows and improved operational efficiency.
+                    Criação e implementação de processos corporativos de Gestão de Mudanças, Gestão de Incidentes de Segurança (RISI), Continuidade de Negócios e Plano de Contingência / DRP.
+                  </li>
+                  <li>
+                    Desenvolvimento de cultura organizacional de segurança da informação, com definição de procedimentos operacionais, fluxos de aprovação e conscientização das áreas de negócio.
+                  </li>
+                  <li>
+                    Suporte a auditorias internas e externas em ambientes industriais e corporativos, garantindo aderência regulatória e maturidade dos controles de segurança.
                   </li>
                 </ul>
 
                 <div className="flex flex-wrap gap-2">
-                  <Badge variant="blue">TOTVS Protheus</Badge>
-                  <Badge variant="blue">Next.js</Badge>
-                  <Badge variant="blue">Legacy Integration</Badge>
-                  <Badge variant="blue">System Modernization</Badge>
+                  <Badge variant="blue">GRC</Badge>
+                  <Badge variant="blue">ISO 27001</Badge>
+                  <Badge variant="blue">TISAX</Badge>
+                  <Badge variant="blue">Gestão de Riscos</Badge>
+                  <Badge variant="blue">Auditoria</Badge>
+                  <Badge variant="blue">Continuidade de Negócios</Badge>
+                  <Badge variant="blue">Gestão de Incidentes</Badge>
+                  <Badge variant="blue">Gestão de Mudanças</Badge>
+                  <Badge variant="blue">Políticas de Segurança</Badge>
+                  <Badge variant="blue">Compliance</Badge>
                 </div>
               </CardContent>
             </Card>
@@ -146,37 +161,41 @@ export default function ResumePage() {
             <Card>
               <CardContent className="space-y-4 px-6">
                 <div>
-                  <p className="font-medium">Software Engineer</p>
+                  <p className="font-medium">Analista de Infraestrutura de TI</p>
                   <p className="text-muted-foreground">
-                    WHB AUTOMOTIVE S.A · Apr 2022 — May 2024
+                    WHB Automotive S.A · Mar 2022 — Nov 2022
                   </p>
                 </div>
 
-                <ul className="list-disc space-y-1 pl-5 text-muted-foreground">
-                  <li>
-                    Worked in industrial and corporate environments delivering software solutions for HR, Manufacturing, Quality, Occupational Safety, and IT.
-                  </li>
-                  <li>
-                    Developed web applications and APIs integrated with multiple internal systems and databases.
-                  </li>
-                  <li>
-                    Developed a Mobile HR application built with Flutter, used by 2,000+ employees.
-                  </li>
-                  <li>
-                    Delivered real-time dashboards and industrial performance indicators (OEE, MTTR, MTBF) for production and maintenance teams.
-                  </li>
-                  <li>
-                    Led refactoring and architectural standardization efforts, including containerization and improvements to legacy systems.
-                  </li>
-                </ul>
+              <ul className="list-disc space-y-1 pl-5 text-muted-foreground">
+                <li>
+                  Administração de Active Directory, incluindo usuários, grupos, GPOs e políticas de segurança.
+                </li>
+                <li>
+                  Implementação de monitoramento com Zabbix e Grafana para servidores, rede e infraestrutura crítica.
+                </li>
+                <li>
+                  Administração de infraestrutura corporativa, incluindo servidores, switches, storage e data center.
+                </li>
+                <li>
+                  Instalação física de infraestrutura, incluindo cabeamento estruturado, racks, crimpagem e organização de data center.
+                </li>
+                <li>
+                  Suporte e manutenção de ambientes on-premise industriais e corporativos.
+                </li>
+              </ul>
 
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="blue">Industrial Systems</Badge>
-                  <Badge variant="blue">Operational Dashboards</Badge>
-                  <Badge variant="blue">Flutter</Badge>
-                  <Badge variant="blue">Mobile</Badge>
-                  <Badge variant="blue">Legacy Modernization</Badge>
-                </div>
+              <div className="flex flex-wrap gap-2">
+                <Badge variant="blue">Active Directory</Badge>
+                <Badge variant="blue">GPO</Badge>
+                <Badge variant="blue">Zabbix</Badge>
+                <Badge variant="blue">Grafana</Badge>
+                <Badge variant="blue">Windows Server</Badge>
+                <Badge variant="blue">Redes</Badge>
+                <Badge variant="blue">Data Center</Badge>
+                <Badge variant="blue">Cabeamento Estruturado</Badge>
+              </div>
+
               </CardContent>
             </Card>
           </section>
@@ -188,145 +207,138 @@ export default function ResumePage() {
             <h2 className="text-lg font-semibold">Skills</h2>
 
             <div className="grid gap-4 sm:grid-cols-2">
-              {/* Backend & Systems */}
+              
+              {/* SOC & SIEM */}
               <Card>
                 <CardContent className="space-y-4 px-6">
                   <div className="flex flex-wrap gap-4 items-center">
-                    <div className="px-2 py-2 border rounded border-blue text-blue-600 dark:text-blue-400">
+                    <div className="px-2 py-2 border rounded border-green-400 text-green-400 dark:text-green-300">
                       <Server className="size-4" />
                     </div>
-                    <h3 className="text-sm font-semibold">Backend Development</h3>
+                    <h3 className="text-sm font-semibold">SOC & SIEM</h3>
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    <Badge variant="blue">Java</Badge>
-                    <Badge variant="blue">Spring Boot</Badge>
-                    <Badge variant="blue">Swagger/OpenAPI</Badge>
-                    <Badge variant="blue">Go</Badge>
-                    <Badge variant="blue">Node.js</Badge>
-                    <Badge variant="blue">Python</Badge>
-                    <Badge variant="blue">PHP</Badge>
-                    <Badge variant="blue">Laravel</Badge>
+                    <Badge variant="blue">SIEM</Badge>
+                    <Badge variant="blue">SOC</Badge>
+                    <Badge variant="blue">Wazuh</Badge>
+                    <Badge variant="blue">MITRE ATT&CK</Badge>
+                    <Badge variant="blue">Resposta a Incidentes</Badge>
+                    <Badge variant="blue">Correlação de Eventos</Badge>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Frontend */}
+              {/* Automação & DevSecOps */}
               <Card>
                 <CardContent className="space-y-4 px-6">
                   <div className="flex flex-wrap gap-4 items-center">
-                    <div className="px-2 py-2 border rounded border-blue text-blue-600 dark:text-blue-400">
-                      <Server className="size-4" />
-                    </div>
-                    <h3 className="text-sm font-semibold">Frontend Development</h3>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="blue">TypeScript</Badge>
-                    <Badge variant="blue">React</Badge>
-                    <Badge variant="blue">Next.js</Badge>
-                    <Badge variant="blue">Flutter</Badge>
-                    <Badge variant="blue">Angular</Badge>
-                    <Badge variant="blue">Vue.js</Badge>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Distributed & Event-Driven */}
-              <Card>
-                <CardContent className="space-y-4 px-6">
-                  <div className="flex flex-wrap gap-4 items-center">
-                    <div className="px-2 py-2 border rounded border-blue text-blue-600 dark:text-blue-400">
+                    <div className="px-2 py-2 border rounded border-green-400 text-green-400 dark:text-green-300">
                       <Layers className="size-4" />
                     </div>
-                    <h3 className="text-sm font-semibold">Distributed Systems & Architecture</h3>
+                    <h3 className="text-sm font-semibold">Automação & DevSecOps</h3>
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    <Badge variant="blue">Kafka</Badge>
-                    <Badge variant="blue">RabbitMQ</Badge>
-                    <Badge variant="blue">Event-driven Architecture</Badge>
-                    <Badge variant="blue">Domain-Driven Design (DDD)</Badge>
+                    <Badge variant="blue">n8n</Badge>
+                    <Badge variant="blue">BurpSuite</Badge>
+                    <Badge variant="blue">OWASP ZAP</Badge>
+                    <Badge variant="blue">SonarQube</Badge>
+                    <Badge variant="blue">Segurança em APIs</Badge>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Data & Persistence */}
+              {/* Infra & Network Security */}
               <Card>
                 <CardContent className="space-y-4 px-6">
                   <div className="flex flex-wrap gap-4 items-center">
-                    <div className="px-2 py-2 border rounded border-blue text-blue-600 dark:text-blue-400">
-                      <Database className="size-4" />
-                    </div>
-                    <h3 className="text-sm font-semibold">Data Engineering & Persistence</h3>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="blue">PostgreSQL</Badge>
-                    <Badge variant="blue">Partitioning</Badge>
-                    <Badge variant="blue">Logical Replication</Badge>
-                    <Badge variant="blue">High Availability</Badge>
-                    <Badge variant="blue">Patroni</Badge>
-                    <Badge variant="blue">SQL Server</Badge>
-                    <Badge variant="blue">MySQL</Badge>
-                    <Badge variant="blue">MongoDB</Badge>
-                    <Badge variant="blue">Redis</Badge>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Platform & Operations */}
-              <Card className="sm:col-span-2">
-                <CardContent className="space-y-4 px-6">
-                  <div className="flex flex-wrap gap-4 items-center">
-                    <div className="px-2 py-2 border rounded border-blue text-blue-600 dark:text-blue-400">
+                    <div className="px-2 py-2 border rounded border-green-400 text-green-400 dark:text-green-300">
                       <Cloud className="size-4" />
                     </div>
-                    <h3 className="text-sm font-semibold">Cloud & Infrastructure</h3>
+                    <h3 className="text-sm font-semibold">Infraestrutura & Rede</h3>
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    <Badge variant="blue">AWS</Badge>
-                    <Badge variant="blue">Cloudflare</Badge>
-                    <Badge variant="blue">Kubernetes</Badge>
-                    <Badge variant="blue">Terraform</Badge>
-                    <Badge variant="blue">Docker</Badge>
-                    <Badge variant="blue">CI/CD</Badge>
-                    <Badge variant="blue">Automation</Badge>
-                    <Badge variant="blue">Observability</Badge>
+                    <Badge variant="blue">Fortigate</Badge>
+                    <Badge variant="blue">Firewall</Badge>
+                    <Badge variant="blue">VPN</Badge>
+                    <Badge variant="blue">Zabbix</Badge>
+                    <Badge variant="blue">Windows Server</Badge>
                     <Badge variant="blue">Linux</Badge>
                   </div>
                 </CardContent>
               </Card>
+
+              {/* IAM & AD */}
+              <Card>
+                <CardContent className="space-y-4 px-6">
+                  <div className="flex flex-wrap gap-4 items-center">
+                    <div className="px-2 py-2 border rounded border-green-400 text-green-400 dark:text-green-300">
+                      <Database className="size-4" />
+                    </div>
+                    <h3 className="text-sm font-semibold">Identidade & Acesso</h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="blue">IAM</Badge>
+                    <Badge variant="blue">PAM</Badge>
+                    <Badge variant="blue">Active Directory</Badge>
+                    <Badge variant="blue">GPO</Badge>
+                    <Badge variant="blue">RBAC</Badge>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* GRC */}
+              <Card className="sm:col-span-2">
+                <CardContent className="space-y-4 px-6">
+                  <div className="flex flex-wrap gap-4 items-center">
+                    <div className="px-2 py-2 border rounded border-green-400 text-green-400 dark:text-green-300">
+                      <Layers className="size-4" />
+                    </div>
+                    <h3 className="text-sm font-semibold">GRC & Compliance</h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="blue">ISO 27001</Badge>
+                    <Badge variant="blue">Lead Implementer</Badge>
+                    <Badge variant="blue">TISAX</Badge>
+                    <Badge variant="blue">Gestão de Riscos</Badge>
+                    <Badge variant="blue">Auditorias</Badge>
+                    <Badge variant="blue">BCB</Badge>
+                    <Badge variant="blue">Continuidade de Negócios</Badge>
+                    <Badge variant="blue">DRP</Badge>
+                  </div>
+                </CardContent>
+              </Card>
+
             </div>
           </section>
 
+
           <Separator className="my-8" />
 
-          {/* Education */}
+          {/* Educations */}
           <section className="space-y-3">
-            <h2 className="text-lg font-semibold">Education</h2>
+            <h2 className="text-lg font-semibold">Educação e Certificações</h2>
 
             <ul className="space-y-2 text-muted-foreground">
               <li>
                 <span className="font-medium text-foreground">
-                  Postgraduate — Software Architecture
+                  Graduação — Engenharia de Software
                 </span>{" "}
-                · UTP · Jul 2025 — Present
+                · Universidade Positivo · Jan 2023 — Dez 2026
               </li>
-              <li>
-                <span className="font-medium text-foreground">
-                  Postgraduate — Software Engineering
-                </span>{" "}
-                · UTP · Mar 2025 — Jan 2026
-              </li>
-              <li>
-                <span className="font-medium text-foreground">
-                  Postgraduate — BI, Big Data & Analytics
-                </span>{" "}
-                · UTP · Aug 2024 — Feb 2025
-              </li>
-              <li>
-                <span className="font-medium text-foreground">
-                  B.Sc. — Systems Analysis and Development
-                </span>{" "}
-                · UniCesumar · Aug 2021 — Jun 2024
-              </li>
+            <li>
+              <span className="font-medium text-foreground">
+                Graduação — Engenharia de Computação (Transferência para Engenharia de Software)
+              </span>{" "}
+              · Universidade Positivo · Jan 2021 — Dez 2022
+            </li>
+
+            <li>
+              <span className="font-medium text-foreground">
+                ISO/IEC 27001:2022 Lead Implementer — ISMS
+              </span>{" "}
+              · Certificação em Segurança da Informação - Acreditação Internacional pela Exemplar Global
+            </li>
+
             </ul>
           </section>
 
@@ -334,39 +346,27 @@ export default function ResumePage() {
 
           {/* Contact */}
           <section className="space-y-2">
-            <h2 className="text-lg font-semibold">Contact</h2>
+            <h2 className="text-lg font-semibold">Contato</h2>
 
             <p className="">
               Email:{" "}
               <a
-                href="mailto:gustavoqe.75@gmail.com"
+                href="mailto:gustavokresko0510@gmail.com"
                 className="underline underline-offset-4"
               >
-                gustavoqe.75@gmail.com
-              </a>
-            </p>
-
-            <p className="">
-              GitHub:{" "}
-              <a
-                href="https://github.com/lobofoltran"
-                target="_blank"
-                rel="noreferrer"
-                className="underline underline-offset-4"
-              >
-                github.com/lobofoltran
+                gustavokresko0510@gmail.com
               </a>
             </p>
 
             <p className="">
               LinkedIn:{" "}
               <a
-                href="https://linkedin.com/in/gustavo-lobo"
+                href="https://www.linkedin.com/in/gustavo-kresko-364454264/"
                 target="_blank"
                 rel="noreferrer"
                 className="underline underline-offset-4"
               >
-                linkedin.com/in/gustavo-lobo
+                linkedin.com/in/gustavo-kresko
               </a>
             </p>
           </section>

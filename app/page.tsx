@@ -7,9 +7,9 @@ import { Separator } from "@/components/ui/separator"
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect"
 
 export const metadata: Metadata = {
-  title: "Gustavo Lobo — Senior Backend & Distributed Systems Engineer",
+  title: "Gustavo Kresko — Analista de Cibersegurança",
   description:
-    "Senior backend engineer specializing in Java, distributed systems, and event-driven architectures. Focused on reliability, scalability, and operating mission-critical systems in production."
+    "Analista de Cibersegurança com atuação em SOC e SIEM, focado em monitoramento, detecção e resposta a incidentes. Experiência em análise de logs, investigação de eventos de segurança, hardening de ambientes e governança de segurança da informação, com base em frameworks como ISO/IEC 27001 e práticas de GRC."
 }
 
 export default function HomePage() {
@@ -20,13 +20,13 @@ export default function HomePage() {
         {/* Text */}
         <div className="space-y-6">
           <h1 className="text-4xl font-semibold tracking-tight">
-            Gustavo <span className="text-primary">Lobo</span>
+            Gustavo <span className="text-primary">Kresko</span>
           </h1>
 
           <div className="max-w-xl text-lg text-muted-foreground">
             <TextGenerateEffect
-              words="Software Engineer focused on backend and distributed systems, building
-            reliable and scalable mission-critical systems."
+              words="Analista de Cibersegurança com foco em proteção de ambientes corporativos, 
+              monitoramento de ameaças, resposta a incidentes e implementação de controles de segurança em sistemas críticos e infraestrutura."
             />
           </div>
 
@@ -43,10 +43,10 @@ export default function HomePage() {
                 ease-in-out
                 hover:shadow-lg
                 hover:ring-4
-                hover:ring-blue-500/30
+                hover:ring-green-400/30
                 "
               >
-              <Link href="/resume">View Resume</Link>
+              <Link href="/resume">Veja o Resumo</Link>
             </Button>
 
             {/* Secondary CTA */}
@@ -61,7 +61,7 @@ export default function HomePage() {
                 hover:border-primary
               "
               >
-              <Link href="/blog">Read Blog</Link>
+              <Link href="/projects">Projetos</Link>
             </Button>
           </div>
         </div>
@@ -71,15 +71,15 @@ export default function HomePage() {
           <div
             className="
       relative h-64 w-64 overflow-hidden rounded-2xl
-      ring-2 ring-blue-500/60
+      ring-2 ring-green-400/60
       shadow-sm
       transition-all duration-700 ease-out
-      hover:scale-105 hover:ring-blue-500 hover:shadow-md
+      hover:scale-105 hover:ring-green-400 hover:shadow-md
     "
           >
             <Image
               src="/me.jpeg"
-              alt="Gustavo Lobo"
+              alt="Gustavo Kresko"
               fill
               priority
               className="
@@ -97,14 +97,15 @@ export default function HomePage() {
       {/* Short bio */}
       <section className="max-w-xl space-y-4 text-sm text-muted-foreground">
         <p>
-          I work on backend and distributed systems with a strong focus on reliability,
-          scalability, and long-term system evolution.
+          Trabalho com cibersegurança aplicada a ambientes empresariais, focando na detecção de ameaças, 
+          resposta a incidentes e evolução contínua dos controles de segurança.
         </p>
         <p>
-          This site documents my work and shares technical insights drawn from
-          complex, real-world systems.
+          Aqui compartilho experiências técnicas e aprendizados obtidos em 
+          ambientes complexos de produção.
         </p>
       </section>
+
     </main>
   )
 }

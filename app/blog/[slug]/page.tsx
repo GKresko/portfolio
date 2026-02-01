@@ -29,17 +29,17 @@ export async function generateMetadata(
   if (!post) return {}
 
   return {
-    title: `${post.title} — Gustavo Lobo`,
+    title: `${post.title} — Gustavo Kresko`,
     description: post.description,
 
-    authors: [{ name: "Gustavo Lobo" }],
+    authors: [{ name: "Gustavo Kresko" }],
 
     openGraph: {
       title: post.title,
       description: post.description,
       type: "article",
       publishedTime: post.date,
-      authors: ["Gustavo Lobo"]
+      authors: ["Gustavo Kresko"]
     }
   }
 }
