@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+﻿import type { Metadata } from "next"
 
 import "./globals.css"
 import { Header } from "@/components/header"
@@ -17,22 +17,21 @@ export const metadata: Metadata = {
   },
   description:
     "Analista de Cibersegurança focado em arquitetura, monitoramento e desempenho de ambientes de segurança.",
-  openGraph: {
-    title: "Gustavo Kresko",
-    description:
-      "Analista de Cibersegurança focado em arquitetura, monitoramento e desempenho de ambientes de segurança.",
-    url: "https://seusite.com",
-    siteName: "Gustavo Kresko",
-    images: [
-      {
-        url: "/og.png",
-        width: 1200,
-        height: 630,
-        alt: "Gustavo Kresko"
-      }
-    ],
-    locale: "en_US",
-    type: "website"
+  robots: {
+    index: false,
+    follow: false,
+    noarchive: true,
+    nosnippet: true,
+    noimageindex: true,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noarchive: true,
+      nosnippet: true,
+      noimageindex: true,
+      nocache: true
+    }
   }
 }
 
