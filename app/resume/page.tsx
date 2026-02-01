@@ -45,7 +45,7 @@ export default function ResumePage() {
 
           {/* Summary */}
           <section className="space-y-3">
-            <h2 className="text-lg font-semibold">Summary</h2>
+            <h2 className="text-lg font-semibold">Sumario</h2>
             <p className="text-muted-foreground">
               Analista de Cibersegurança, com foco em detecção de ameaças, automação de segurança e arquitetura corporativa. Experiência em governança, risco e conformidade (GRC), certificações ISO 27001 (Lead Implementer) e condução de certificação TISAX, incluindo auditorias regulatórias. Forte atuação em engenharia de cibersegurança, SOC, monitoramento e resposta a incidentes, construção de pipelines de SIEM, automação com n8n e integração de segurança em aplicações (SAST/DAST), além da administração de controles de segurança em ambientes corporativos e financeiros.
             </p>
@@ -55,7 +55,7 @@ export default function ResumePage() {
 
           {/* Experience */}
           <section className="space-y-6">
-            <h2 className="text-lg font-semibold">Experience</h2>
+            <h2 className="text-lg font-semibold">Experiência</h2>
 
             {/* Cybersecurity */}
             <Card>
