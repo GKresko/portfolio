@@ -2,36 +2,39 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://lobofoltran.dev</loc>
+    <loc>https://gustavokresko.com</loc>
   </url>
   <url>
-    <loc>https://lobofoltran.dev/blog</loc>
+    <loc>https://gustavokresko.com/blog</loc>
   </url>
   <url>
-    <loc>https://lobofoltran.dev/resume</loc>
+    <loc>https://gustavokresko.com/resume</loc>
   </url>
   <url>
-    <loc>https://lobofoltran.dev/blog/centralized-observability-with-prometheus-loki-promtail</loc>
+    <loc>https://gustavokresko.com/projects</loc>
   </url>
   <url>
-    <loc>https://lobofoltran.dev/blog/ddd-in-practice-modeling-a-real-domain</loc>
+    <loc>https://gustavokresko.com/blog/radar-ameacas-soc-siem-deteccao</loc>
   </url>
   <url>
-    <loc>https://lobofoltran.dev/blog/designing-resilient-kafka-integrations</loc>
+    <loc>https://gustavokresko.com/blog/opiniao-grc-falha-sem-metricas-acionaveis</loc>
   </url>
   <url>
-    <loc>https://lobofoltran.dev/blog/designing-systems-that-scale-horizontally</loc>
+    <loc>https://gustavokresko.com/blog/guia-rapido-resposta-incidentes-playbooks-enxutos</loc>
   </url>
   <url>
-    <loc>https://lobofoltran.dev/blog/how-ddd-changed-how-i-build-software</loc>
+    <loc>https://gustavokresko.com/blog/checklist-seguranca-cloud-hibrida-sem-friccao</loc>
   </url>
   <url>
-    <loc>https://lobofoltran.dev/blog/observability-with-prometheus-and-micrometer</loc>
+    <loc>https://gustavokresko.com/blog/opiniao-cultura-seguranca-alem-ferramentas</loc>
   </url>
   <url>
-    <loc>https://lobofoltran.dev/blog/outbox-pattern-with-postgresql-in-practice</loc>
+    <loc>https://gustavokresko.com/blog/monitoramento-identidade-acesso-essencial</loc>
   </url>
   <url>
-    <loc>https://lobofoltran.dev/blog/postgresql-partitioning-in-practice</loc>
+    <loc>https://gustavokresko.com/blog/analise-dlp-na-pratica-e-armadilhas</loc>
+  </url>
+  <url>
+    <loc>https://gustavokresko.com/blog/panorama-lgpd-evidencias-pressao-regulatoria-2025</loc>
   </url>
 </urlset>
