@@ -3,7 +3,7 @@ export const metadata = {
     default: "Nome Sobrenome",
     template: "%s | Nome"
   },
-  description: "Software Engineer focado em arquitetura e sistemas distribuídos.",
+  description: "Analista de Cibersegurança focado em arquitetura, monitoramento e desempenho de ambientes de segurança.",
   openGraph: {
     images: ["/og.png"]
   }
